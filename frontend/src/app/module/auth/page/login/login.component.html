@@ -1,0 +1,109 @@
+<p-toast></p-toast>
+<router-outlet>
+  <div class="p-grid">
+    <div class="p-md-6 p-md-offset-3">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+        <p-panel header="Validate">
+          <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                First Name *:
+              </div>
+              <div class="ui-grid-col-6">
+                <input pInputText type="text" formControlName="firstname" placeholder="Required" />
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  text="Firstname is required"
+                  *ngIf="
+                    !userForm.controls['firstname'].valid && userForm.controls['firstname'].dirty
+                  "
+                ></p-message>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Last Name *:
+              </div>
+              <div class="ui-grid-col-6">
+                <input pInputText type="text" formControlName="lastname" placeholder="Required" />
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  text="Lastname is required"
+                  *ngIf="
+                    !userForm.controls['lastname'].valid && userForm.controls['lastname'].dirty
+                  "
+                ></p-message>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Password *:
+              </div>
+              <div class="ui-grid-col-6">
+                <input
+                  pInputText
+                  type="password"
+                  formControlName="password"
+                  placeholder="Required - Min(6)"
+                />
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  [text]="
+                    userForm.controls['password'].errors['required']
+                      ? 'Password is required'
+                      : userForm.controls['password'].errors['minlength']
+                      ? 'Must be longer than 6 characters'
+                      : ''
+                  "
+                  *ngIf="
+                    !userForm.controls['password'].valid && userForm.controls['password'].dirty
+                  "
+                ></p-message>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Description:
+              </div>
+              <div class="ui-grid-col-6">
+                <textarea pInputTextarea type="text" formControlName="description"></textarea>
+              </div>
+              <div class="ui-grid-col-4"></div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2">
+                Gender *:
+              </div>
+              <div class="ui-grid-col-6">
+                <p-dropdown [options]="genders" formControlName="gender"></p-dropdown>
+              </div>
+              <div class="ui-grid-col-4">
+                <p-message
+                  severity="error"
+                  text="Gender is required"
+                  *ngIf="!userForm.controls['gender'].valid && userForm.controls['gender'].dirty"
+                ></p-message>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2"></div>
+              <div class="ui-grid-col-6">
+                <button pButton type="submit" label="Submit" [disabled]="!userForm.valid"></button>
+              </div>
+              <div class="ui-grid-col-4"></div>
+            </div>
+            <div style="margin-top:20px">
+              <pre>Form Value<br />{{ diagnostic | json }}</pre>
+            </div>
+          </div>
+        </p-panel>
+      </form>
+    </div>
+  </div>
+</router-outlet>

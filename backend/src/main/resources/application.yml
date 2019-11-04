@@ -1,0 +1,16 @@
+spring:
+  jjwt:
+    secret: '?E(H+MbQeShVmYq3t6w9z$C&F)J@NcRfUjWnZr4u7x!A%D*G-KaPdSgVkYp2s5v8'
+    iteration: 33
+    key-length: 256
+    expiration-time: 3600
+  main:
+    web-application-type: servlet
+  data:
+    mongodb: 
+      host: localhost
+      port: 27017
+      database: web-application
+      authentication-database: admin
+      username: root
+      password: password

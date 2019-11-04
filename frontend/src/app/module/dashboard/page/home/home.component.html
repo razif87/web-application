@@ -1,0 +1,18 @@
+<div class="p-grid">
+  <div class="p-md-8 p-md-offset-2 p-sm-12">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="p-col-4">
+        <button pButton type="button" (click)="setType()" label="All dashboards"></button>
+      </div>
+      <div class="p-col-4" *ngFor="let item of dashboardTypes">
+        <button
+          pButton
+          type="button"
+          (click)="setType(item.id)"
+          icon="pi {{ item.icon }}"
+          label="{{ item.name }} dashboards"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
